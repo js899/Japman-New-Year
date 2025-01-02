@@ -1,4 +1,4 @@
-/* General Styles */
+/* General Page Styles */
 body {
     font-family: 'Georgia', serif;
     margin: 0;
@@ -7,25 +7,24 @@ body {
     justify-content: center;
     align-items: center;
     background: linear-gradient(45deg, #1f1c2c, #928dab);
-    min-height: 100vh;
+    min-height: 100vh; /* Ensures vertical centering even on taller screens */
     color: #fff;
-    overflow: hidden;
+    overflow: hidden; /* Prevent scrolling issues */
 }
 
-/* Card Styles */
+/* Card Container */
 .card {
     width: 90%;
     max-width: 400px;
-    aspect-ratio: 3 / 4; /* Keeps consistent proportions */
+    aspect-ratio: 3 / 4; /* Ensures a consistent proportion */
     perspective: 1000px;
-    position: relative;
-    overflow: hidden; /* Prevent unwanted overflow issues */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; /* Fully centers the card's content */
+    position: relative;
 }
 
-/* Page Styles */
+/* Card Pages */
 .page {
     width: 100%;
     height: 100%;
@@ -37,11 +36,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* Stack text vertically */
+    flex-direction: column;
     text-align: center;
     backface-visibility: hidden;
-    z-index: 1; /* Keep hidden by default */
-    opacity: 0; /* Ensure hidden by default */
+    z-index: 1;
+    opacity: 0; /* Hidden initially */
 }
 
 /* Make active pages visible */
@@ -50,53 +49,45 @@ body {
     opacity: 1;
 }
 
+/* Front Page */
 .front {
     background: linear-gradient(135deg, #ff512f, #dd2476);
     transform: rotateY(0deg);
     z-index: 3;
-    opacity: 1; /* Always visible initially */
+    opacity: 1;
     cursor: pointer;
 }
 
-/* Page Text Styling */
-.front h1,
-#page1 h1,
-#page2 .message {
-    margin: 0;
-    padding: 20px;
-}
-
-.front h1 {
-    font-size: 2.5em;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.6);
+/* Page 1 (Inner Page) */
+#page1 {
+    background: #ffffff;
+    color: #4b134f;
 }
 
 #page1 h1 {
     font-size: 4em;
     font-family: 'Courier New', monospace;
-    color: #4b134f;
 }
 
+/* Page 2 (Message Page) */
 #page2 {
     background: linear-gradient(to bottom, #ffa751, #ffe259);
     color: #4b134f;
-    padding: 40px 20px; /* Adds spacing for the message */
-    overflow-y: auto; /* Enables scrolling if needed */
+    padding: 40px 20px; /* Adds spacing for message content */
+    overflow-y: auto; /* Ensures message is scrollable if long */
 }
 
 #page2 .message {
     font-size: 1.4em;
     line-height: 1.8;
-    text-align: center; /* Ensures balanced alignment */
     color: #4b134f;
+    text-align: center; /* Keeps content neat */
 }
 
-/* Arrow Bounce Animation */
+/* Arrow Styling (Bouncing) */
 .front .arrow {
     position: absolute;
-    bottom: 30px;
+    bottom: 10%;
     font-size: 1.5em;
     color: #fff;
     animation: bounce 1s infinite;
@@ -111,11 +102,11 @@ body {
     }
 }
 
-/* Mobile Adjustments */
+/* Mobile-Specific Adjustments */
 @media (max-width: 600px) {
     .card {
-        width: 100%;
-        height: auto; /* Allow flexible height */
+        width: 95%;
+        height: auto;
     }
 
     .front h1 {
@@ -127,6 +118,6 @@ body {
     }
 
     #page2 .message {
-        font-size: 1em;
+        font-size: 1.2em;
     }
 }
