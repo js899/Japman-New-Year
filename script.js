@@ -1,14 +1,11 @@
-// Card flip logic
-document.getElementById("front").addEventListener("click", () => {
-    document.getElementById("front").style.transform = "rotateY(-90deg)";
-    setTimeout(() => {
-        document.getElementById("page1").style.transform = "rotateY(0deg)";
-    }, 500);
+document.querySelector('.card').addEventListener('click', function () {
+    this.classList.toggle('flipped');
 });
 
-document.getElementById("page1").addEventListener("click", () => {
-    document.getElementById("page1").style.transform = "rotateY(-90deg)";
+// Hide page2 content on initialization
+window.onload = () => {
+    document.getElementById('page2').style.opacity = "0";
     setTimeout(() => {
-        document.getElementById("page2").style.transform = "rotateY(0deg)";
-    }, 500);
-});
+        document.getElementById('page2').style.opacity = "1";
+    }, 800); // Ensure it's hidden for 0.8s (matching flip transition)
+};
