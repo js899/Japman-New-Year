@@ -7,25 +7,28 @@ body {
     justify-content: center;
     align-items: center;
     background: linear-gradient(45deg, #1f1c2c, #928dab);
-    height: 100vh;
+    min-height: 100vh;
     color: #fff;
     overflow: hidden;
 }
 
 /* Card Styles */
 .card {
-    width: 100%;
+    width: 90%;
     max-width: 400px;
+    aspect-ratio: 3 / 4; /* Keeps consistent proportions */
     perspective: 1000px;
     position: relative;
-    overflow: hidden; /* Prevent unintended overflow on small screens */
+    overflow: hidden; /* Prevent unwanted overflow issues */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* Page Styles */
 .page {
     width: 100%;
     height: 100%;
-    max-height: 600px;
-    aspect-ratio: 3 / 4; /* Standard card dimensions for better centering */
     border-radius: 15px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
     transform-style: preserve-3d;
@@ -34,28 +37,28 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* Stack text content neatly */
+    flex-direction: column; /* Stack text vertically */
     text-align: center;
     backface-visibility: hidden;
-    z-index: 1; /* Hide initially */
-    opacity: 0; /* Hidden initially */
+    z-index: 1; /* Keep hidden by default */
+    opacity: 0; /* Ensure hidden by default */
 }
 
-/* Make the card full-page centered */
+/* Make active pages visible */
 .page.active {
-    z-index: 2; /* Make visible when active */
+    z-index: 2;
     opacity: 1;
 }
 
 .front {
     background: linear-gradient(135deg, #ff512f, #dd2476);
     transform: rotateY(0deg);
-    z-index: 3; /* Front is visible initially */
-    opacity: 1;
+    z-index: 3;
+    opacity: 1; /* Always visible initially */
     cursor: pointer;
 }
 
-/* Center Content Styling */
+/* Page Text Styling */
 .front h1,
 #page1 h1,
 #page2 .message {
@@ -79,24 +82,44 @@ body {
 #page2 {
     background: linear-gradient(to bottom, #ffa751, #ffe259);
     color: #4b134f;
-    padding: 40px 20px; /* Adds comfortable spacing */
-    overflow-y: auto; /* Enable scrolling for longer content on mobile */
+    padding: 40px 20px; /* Adds spacing for the message */
+    overflow-y: auto; /* Enables scrolling if needed */
 }
 
 #page2 .message {
     font-size: 1.4em;
-    line-height: 2;
+    line-height: 1.8;
+    text-align: center; /* Ensures balanced alignment */
     color: #4b134f;
 }
 
-/* Add Responsiveness for Smaller Screens */
+/* Arrow Bounce Animation */
+.front .arrow {
+    position: absolute;
+    bottom: 30px;
+    font-size: 1.5em;
+    color: #fff;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Mobile Adjustments */
 @media (max-width: 600px) {
-    .page {
-        max-height: 100%; /* Ensure it fills the screen vertically */
+    .card {
+        width: 100%;
+        height: auto; /* Allow flexible height */
     }
 
     .front h1 {
-        font-size: 2em; /* Slightly smaller font */
+        font-size: 1.8em;
     }
 
     #page1 h1 {
@@ -104,6 +127,6 @@ body {
     }
 
     #page2 .message {
-        font-size: 1.2em;
+        font-size: 1em;
     }
 }
