@@ -17,7 +17,7 @@ body {
     width: 90%;
     max-width: 400px;
     aspect-ratio: 3 / 4; /* Ensures a consistent proportion */
-    perspective: 100px;
+    perspective: 100%;
     display: flex;
     justify-content: center;
     align-items: center; /* Fully centers the card's content */
