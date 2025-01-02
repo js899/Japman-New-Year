@@ -1,29 +1,4 @@
 /* General Page Styles */
-body {
-    font-family: 'Georgia', serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(45deg, #1f1c2c, #928dab);
-    height: 100vh; /* Full screen height */
-    overflow: hidden; /* Prevents scrolling issues */
-}
-
-/* Card Container */
-.card {
-    position: relative;
-    width: 90%;
-    max-width: 400px;
-    aspect-ratio: 3 / 4; /* Keeps card proportional */
-    perspective: 1000px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Card Pages */
 .page {
     position: absolute;
     width: 100%;
@@ -35,72 +10,24 @@ body {
     align-items: center;
     flex-direction: column;
     text-align: center;
+    backface-visibility: hidden; /* Key to prevent "flashing" */
     transform-style: preserve-3d;
     transition: transform 0.8s ease-in-out;
-    backface-visibility: hidden;
 }
 
-/* Front Page */
+/* Specifically for Page 2 */
+#page2 {
+    transform: rotateY(180deg); /* Start completely hidden */
+    backface-visibility: hidden; /* Ensure it’s hidden properly */
+}
+
+/* Front Page Flip (No Bleed) */
 .front {
-    background: linear-gradient(135deg, #ff512f, #dd2476);
-    z-index: 3;
-    cursor: pointer;
+    backface-visibility: hidden; /* No content "bleed" on init */
+    transform: rotateY(0deg);
 }
 
-/* Arrow on the Front Page */
-.front .arrow {
-    position: absolute;
-    bottom: 15%; /* Raised slightly for visibility */
-    font-size: 1.5em;
-    color: #fff;
-    animation: bounce 1s infinite;
-}
-
-/* Inner Pages */
-#page1,
-#page2 {
-    background: #ffffff;
-    color: #4b134f;
-}
-
-/* Page 1 Styling */
-#page1 h1 {
-    font-size: 4em;
-    font-family: 'Courier New', monospace;
-}
-
-/* Page 2 (Message Page) */
-#page2 {
-    padding: 20px;
-}
-
-#page2 .message {
-    font-size: 1.2em;
-    line-height: 1.6;
-    text-align: center;
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 600px) {
-    .card {
-        width: 95%;
-    }
-
-    #page1 h1 {
-        font-size: 3em;
-    }
-
-    #page2 .message {
-        font-size: 1em;
-    }
-}
-
-/* Animations */
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
+/* JavaScript Flip Transition */
+.flip {
+    transform: rotateY(180deg); /* Control smooth flip animations */
 }
